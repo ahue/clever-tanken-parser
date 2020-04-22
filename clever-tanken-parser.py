@@ -139,17 +139,20 @@ for tankstelle in tankstellen:
   obj = dict()
   ts = get_changed_timestamp(tankstelle)
   if ts>0:
-    obj["changed"] = ts
+    # TODO: check that changed actually is correct!
+    obj["changed"] = int(ts)
     obj["price"] = get_price(tankstelle)
+    obj["fuel"] = args.fuel
   else:
-    obj["opens"] = -ts
+    obj["opens"] = -int(ts)
   
   obj["location"] = get_location_details(tankstelle)
 
   id_hash = hashlib.sha1()
   id_hash.update((obj["location"]["name"] + obj["location"]["street"] + obj["location"]["city"]).encode("UTF-8"))
-  obj["id"] = id_hash.hexdigest()
+  obj["location"]["id"] = id_hash.hexdigest()
+  obj["id"] = obj["location"]["id"] + "_" + str(int(ts)) + "_" + args.fuel
   res.append(obj)
 res
 
-print(res)
+print(json.dumps(res))
