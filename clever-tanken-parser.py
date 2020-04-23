@@ -91,19 +91,19 @@ def get_changed_timestamp(tankstelle):
     changed_ts = datetime.strptime('{} {}'.format(changed_date, changed_clock), 
                                    '%d.%m.%Y %H:%M')
 
-  if len(changed_text)==2 and "Gestern" in changed_text[0].text:
+  elif len(changed_text)==2 and "Gestern" in changed_text[0].text:
     opens_hrs = int(re.findall(r'(\d{1,2}):', changed_text[0].text)[0])
     opens_sec = int(re.findall(r':(\d{1,2})', changed_text[0].text)[0])
     changed_ts = datetime.now() - timedelta(days=1)
     changed_ts = changed_ts.replace(hour=opens_hrs, minute=opens_sec,
                                     second=0, microsecond=0)
 
-  if len(changed_text)==3:
+  elif len(changed_text)==3:
     changed_day = changed_text[1].text
     changed_num = int(re.findall(r'\d{1,2}', changed_text[2].text)[0])
     changed_unit = re.findall(r'Sek|Min|Std', changed_text[2].text)[0]
 
-    if changed_unit == "min":
+    if changed_unit == "Min":
       changed_num *= 60
     if changed_unit == "Std":
       changed_num *= 3600
