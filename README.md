@@ -2,7 +2,7 @@
 
 * Requests endpoint https://www.clever-tanken.de/tankstelle_liste
 * Uses `beautifulsoup4` for parsing
-* Works as of 23.4.2020; Changes in website structure may break the parser
+* Works as of 13.6.2020; Changes in website structure may break the parser
 
 ```
 usage: clever-tanken-parser.py [-h] --zipcode ZIPCODE [--lat LAT] [--lon LON]
