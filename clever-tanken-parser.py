@@ -13,7 +13,7 @@ import argparse
 parser = argparse.ArgumentParser(description='Request fuel prices at a location in Germany.')
 group = parser.add_mutually_exclusive_group(required=True)
 latlon_group = group.add_argument_group('latlon', 'Latitude & Longitude')
-group.add_argument('--zipcode', "-z", type=int, help='German zip code (5 digits), e.g. 80678')
+group.add_argument('--zipcode', "-z", type=str, help='German zip code (5 digits), e.g. 80678')
 latlon_group.add_argument('--lat', type=float, help='Latitude, e.g. 48.1280277')
 latlon_group.add_argument('--lon', type=float, help='Longitude, e.g. 11.3633374')
 parser.add_argument('--fuel', '-f', type=str, help='Fuel type', default="diesel", choices=["diesel", "autogas", "truck_diesel", "e10", "superplus", "super"], required=True)
